@@ -7,11 +7,10 @@ import scala.collection.mutable
 object TweetGraph{
 
   def create_graph(sc: SparkContext, edges: RDD[Edge[Long]], nodes: RDD[Long], data_file_path:String): Unit ={
-
     val nodes_label = nodes.map(x => (x.toLong, x.toString))
-    //SimilarInterestComm(edges, nodes_label, thWeight = 5, thInDegree = 3, data_file_path)
-    //StrongInteractingCommunities(edges, nodes_label, thWeight = 5, thInDegree = 3, thCtMember = 5, data_file_path)
-    //StrongInteractingCommunitiesWInnerCircle(sc, edges, nodes_label, thWeight = 5, thInDegree = 3, thCtMember = 5, data_file_path)
+    SimilarInterestComm(edges, nodes_label, thWeight = 5, thInDegree = 3, data_file_path)
+    StrongInteractingCommunities(edges, nodes_label, thWeight = 5, thInDegree = 3, thCtMember = 5, data_file_path)
+    StrongInteractingCommunitiesWInnerCircle(sc, edges, nodes_label, thWeight = 5, thInDegree = 3, thCtMember = 5, data_file_path)
     //Dencast(edges, nodes_label, 0.1 , data_file_path)
 
   }
